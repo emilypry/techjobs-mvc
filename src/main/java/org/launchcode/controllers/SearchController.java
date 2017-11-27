@@ -39,7 +39,7 @@ public class SearchController {
         int [] nums = {1,2,3,4};
         model.addAttribute("nums", nums);
 
-        model.addAttribute("results", results);
+        model.addAttribute("items", results);
         model.addAttribute("columns", ListController.columnChoices);
         return "search";
 
