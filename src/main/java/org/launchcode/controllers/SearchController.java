@@ -29,18 +29,20 @@ public class SearchController {
     public String results(Model model, @RequestParam String searchType, @RequestParam String searchTerm){
         //Gets searchType and searchTerm from search.html
         ArrayList<HashMap<String, String>> results = new ArrayList<HashMap<String, String>>();
+        int numOfResults = 0;
 
         if(searchType.equals("all")){   // If they click all
             results = JobData.findByValue(searchTerm);
+
         } else {    // If they click one of the categories
             results = JobData.findByColumnAndValue(searchType, searchTerm);
         }
+        numOfResults = results.size();
 
-        int [] nums = {1,2,3,4};
-        model.addAttribute("nums", nums);
 
         model.addAttribute("items", results);
         model.addAttribute("columns", ListController.columnChoices);
+        model.addAttribute("numOfResults", numOfResults);
         return "search";
 
         //NOT WORKING; GET ERROR WHEN SUBMIT
